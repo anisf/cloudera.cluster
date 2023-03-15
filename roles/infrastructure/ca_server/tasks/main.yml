@@ -37,6 +37,8 @@
   ansible.builtin.pip:
     name: pyOpenSSL
     state: present
+    extra_args: '-i {{ local_pypi_repo | d("https://pypi.org") }} --trusted-host {{ local_pypi_repo | d("https://pypi.org") | urlsplit("hostname") }}'
+    executable: '{{ default_pip_executable | d(omit) }}'
   when:
     - ansible_os_family == "RedHat"
     - ansible_distribution_major_version | int >= 8
