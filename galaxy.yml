@@ -60,8 +60,6 @@ dependencies:
   'community.crypto': ">=2.10.0"
   'community.general': ">=6.2.0"
   'community.mysql': '3.1.0'
-  'community.postgresql': '1.6.1'
-  'freeipa.ansible_freeipa': '1.6.2'
 
 # The URL of the originating SCM repository
 repository: https://github.com/cloudera-labs/cloudera.cluster
