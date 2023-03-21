@@ -21,7 +21,10 @@
 - name: Install openssl
   ansible.builtin.package:
     lock_timeout: "{{ (ansible_os_family == 'RedHat') | ternary(60, omit) }}"
-    name: openssl
+    name:
+      - openssl
+      - python3-pyOpenSSL
+      - python3-cryptography
     state: present
 
 - name: Install PyOpenSSL on Rhel7
@@ -32,22 +35,6 @@
   when:
     - ansible_os_family == "RedHat"
     - ansible_distribution_major_version | int < 8
-
-- name: Install PyOpenSSL on Rhel8
-  ansible.builtin.pip:
-    name: pyOpenSSL
-    state: present
-    extra_args: '-i {{ local_pypi_repo | d("https://pypi.org") }} --trusted-host {{ local_pypi_repo | d("https://pypi.org") | urlsplit("hostname") }}'
-    executable: '{{ default_pip_executable | d(omit) }}'
-  when:
-    - ansible_os_family == "RedHat"
-    - ansible_distribution_major_version | int >= 8
-
-- name: Install cryptography Python package
-  ansible.builtin.pip:
-    name: cryptography
-    state: present
-  when: ansible_os_family == "Debian"
 
 - name: Check for the intermediate CA key
   stat:
