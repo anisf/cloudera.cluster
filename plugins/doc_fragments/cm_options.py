@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright 2022 Cloudera, Inc. All Rights Reserved.
+# Copyright 2023 Cloudera, Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -55,8 +55,6 @@ class ModuleDocFragment(object):
             type: bool
             required: False
             default: True
-            aliases:
-                - tls
         username:
             description:
                 - Username for access to the CM API endpoint.
